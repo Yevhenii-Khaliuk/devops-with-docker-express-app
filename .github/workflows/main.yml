@@ -22,3 +22,10 @@ jobs:
         with:
           push: true
           tags: ykhaliuk/express-app:latest
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Render deploy hook
+        run: curl ${{ secrets.DEPLOY_HOOK_URL }}
