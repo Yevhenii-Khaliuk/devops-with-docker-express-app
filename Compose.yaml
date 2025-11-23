@@ -1,0 +1,15 @@
+services:
+  express-app:
+    image: ykhaliuk/express-app
+    ports:
+      - "8080:8080"
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+
+  watchtower:
+    image: containrrr/watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: --interval 30
+    environment:
+      WATCHTOWER_LABEL_ENABLE: true
